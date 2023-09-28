@@ -5,7 +5,7 @@ import ItemDetails from "./pages/ItemDetails";
 import Signup from "./pages/Signup";
 import { ItemsProvider } from "./contexts/ItemsContext";
 import AppLayout from "./components/AppLayout";
-import { CartProvider } from "./hooks/useCart";
+import { CartProvider } from "./contexts/useCart";
 
 function App() {
   return (

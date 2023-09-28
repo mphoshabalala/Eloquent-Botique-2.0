@@ -3,7 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { useItems } from "../contexts/ItemsContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../contexts/useCart";
 import Cart from "../components/Cart";
 
 export default function ItemDetails() {

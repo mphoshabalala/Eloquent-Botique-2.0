@@ -1,20 +1,28 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useItems } from "./ItemsContext";
+// import { useItems } from "./ItemsContext";
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
+  // get cart items from local storage
   const [cartItems, setCartItems] = useState(() => {
     const ItemsInLocalStorage = JSON.parse(localStorage.getItem("addedToCart"));
     return ItemsInLocalStorage || [];
   });
-
   const [isInCart, setIsInCart] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const { currentItem } = useItems();
 
   function checkIfIsInCart(item) {
-    const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id); //check if item exist
-    if (isItemInCart) setIsInCart(true);
-    else setIsInCart(false);
+    try {
+      const isItemInCart = cartItems.some(
+        (cartItem) => cartItem.id === item.id
+      ); //check if item exist
+      setIsInCart(isItemInCart);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   function deleteItemFromCart(item) {
@@ -23,6 +31,11 @@ export function CartProvider({ children }) {
     );
     setCartItems(updatedCartItems);
     localStorage.setItem("addedToCart", JSON.stringify(updatedCartItems));
+
+    // check if theres item that is currently open, and if it is in cart
+    if (currentItem && currentItem.id === item.id) {
+      setIsInCart(false);
+    }
   }
 
   function handleAddToCart(item) {
@@ -34,13 +47,14 @@ export function CartProvider({ children }) {
       );
       setCartItems(updatedCartItems);
       localStorage.setItem("addedToCart", JSON.stringify(updatedCartItems));
+      setIsInCart(false);
     } else {
       // If item is not in cart, add it
 
       setCartItems((cartItems) => [...cartItems, item]);
       localStorage.setItem("addedToCart", JSON.stringify([...cartItems, item]));
+      setIsInCart(true);
     }
-    setIsInCart(!isInCart);
   }
 
   const cartItemsCount = cartItems.length;

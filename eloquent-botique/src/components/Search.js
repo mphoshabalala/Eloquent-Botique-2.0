@@ -2,7 +2,9 @@ import React from "react";
 import { useItems } from "../contexts/ItemsContext";
 
 export default function Search() {
-  const { searchQuery, setSearchQuery, categories } = useItems();
+  const { searchQuery, setSearchQuery, categories, setSelectedCategory } =
+    useItems();
+
   return (
     <div className="search">
       <input
@@ -12,10 +14,14 @@ export default function Search() {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <select className="search-category">
-        <option>Category</option>
+      <select
+        className="search-category"
+        onChange={(e) => setSelectedCategory(e.target.value.toLowerCase())}
+      >
         {categories.map((category) => (
-          <option key={category}>{category}</option>
+          <option key={category}>
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </option>
         ))}
       </select>
     </div>

@@ -1,13 +1,19 @@
 import { Link } from "react-router-dom";
-import { CartProvider, useCart } from "../hooks/useCart";
+import { useCart } from "../contexts/useCart";
+import { useItems } from "../contexts/ItemsContext";
 
 export default function Header() {
   const { cartItemsCount, setCartOpen } = useCart();
+  const { setSelectedCategory } = useItems();
   return (
     <header>
       <div className="logo">
         <h1>
-          <Link className="logo-link" to="/">
+          <Link
+            className="logo-link"
+            to="/"
+            onClick={() => setSelectedCategory("")}
+          >
             NobleWear Boutique
           </Link>
         </h1>
@@ -21,7 +27,7 @@ export default function Header() {
         </Link>
         <div className="cart" onClick={() => setCartOpen((prev) => !prev)}>
           {cartItemsCount}
-          <span>🛍️</span>
+          <span className="cart">🛍️</span>
         </div>
       </div>
     </header>

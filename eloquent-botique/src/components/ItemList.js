@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useItems } from "../contexts/ItemsContext";
 import CardItem from "./CardItem";
 import { Link } from "react-router-dom";
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../contexts/useCart";
 
 export default function ItemList() {
   const { searchedItems, isLoading } = useItems();

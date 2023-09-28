@@ -9,6 +9,7 @@ function ItemsProvider({ children }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [categories, setCategories] = useState([]);
   const [failedToFetch, setFaileToFetch] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const searchedItems =
     searchQuery.length > 0
@@ -17,7 +18,9 @@ function ItemsProvider({ children }) {
             .toLocaleLowerCase()
             .includes(searchQuery.toLocaleLowerCase())
         )
-      : items;
+      : items.filter((item) =>
+          selectedCategory ? item.category === selectedCategory : true
+        );
 
   useEffect(() => {
     async function getItems() {
@@ -62,6 +65,7 @@ function ItemsProvider({ children }) {
         setSearchQuery,
         categories,
         setCurrentItem,
+        setSelectedCategory,
       }}
     >
       {children}

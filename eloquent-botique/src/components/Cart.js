@@ -1,10 +1,9 @@
 import React from "react";
-import { useCart } from "../hooks/useCart";
+import { useCart } from "../contexts/useCart";
 import { Link } from "react-router-dom";
 
 export default function Cart() {
   const { cartItems, deleteItemFromCart } = useCart();
-  console.log("clicked");
 
   return (
     <div className="cart-container">
