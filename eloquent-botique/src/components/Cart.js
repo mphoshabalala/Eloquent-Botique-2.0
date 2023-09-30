@@ -22,6 +22,7 @@ export default function Cart() {
             <div>
               <p
                 className="cart-delete"
+                // handle item delete from cart
                 onClick={() => deleteItemFromCart(cartItem)}
               >
                 🚮

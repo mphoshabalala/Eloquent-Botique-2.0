@@ -25,6 +25,7 @@ export default function Header() {
         <Link className="signup" to="/signup">
           Signup
         </Link>
+        {/* if cart is open close it, else open it */}
         <div className="cart" onClick={() => setCartOpen((prev) => !prev)}>
           {cartItemsCount}
           <span className="cart">🛍️</span>

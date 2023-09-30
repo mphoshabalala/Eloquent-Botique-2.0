@@ -19,6 +19,7 @@ export default function ItemList() {
         <Link
           onClick={() => checkIfIsInCart(item)}
           key={item.id}
+          // go to the given item's id
           to={{
             pathname: `${item.id}`,
             search: `?title=${encodeURIComponent(item.title)}`,
