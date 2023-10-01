@@ -321,6 +321,63 @@ select:focus {
   cursor: pointer;
 }
 
+/* loading */
+
+.loading {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container {
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  background-color: #161c27;
+  padding: 1.5rem;
+  border-radius: 0.3rem;
+}
+
+.form > input {
+  margin: 0.5rem 0;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  color: #333333;
+}
+
+.form > h1 {
+  color: #fff;
+}
+
+.form > button {
+  border: none;
+  margin: 0.5rem 0;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  background-color: #ff245b;
+  color: #ffff;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.form > button:hover {
+  background-color: #8a1230;
+}
+
+.auth-links {
+  display: flex;
+}
+
 /* CART */
 
 .cart-modal {
@@ -336,18 +393,43 @@ select:focus {
   justify-content: center;
 }
 
-.cart-container {
+/* .cart-container {
   width: 30vw;
-  position: fixed;
+  position: absolute;
   background-color: #f5f5f5;
-  /* padding: 2rem; */
   z-index: 999;
   height: fit-content;
-  top: 3.19rem;
-  right: 2rem;
-  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.3);
-  /* border-radius: 0.5rem; */
+  top: 100%;
+  margin-top: 1rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   font-size: 0.8rem;
+} */
+
+.cart-container {
+  position: absolute;
+  top: 100%; /* Position below the cart trigger */
+  left: 50%; /* Center the cart container horizontally */
+  transform: translateX(-80%); /* Center it perfectly */
+  background-color: #f5f5f5;
+  z-index: 2; /* Ensure the cart container is above the cart trigger */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  /* display: none; Initially hide the cart container */
+  width: 23rem;
+  margin-top: 1rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -20px; /* Adjust this value to position the arrow properly */
+    left: 91%;
+    margin-left: -50px; /* Half of the arrow's width */
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #f5f5f5 transparent;
+  }
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .cart-item-name {
@@ -409,66 +491,23 @@ select:focus {
   cursor: pointer;
 }
 
-/* loading */
-
-.loading {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.form-container {
-  height: 85vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  width: 30rem;
-  background-color: #161c27;
-  padding: 1.5rem;
-  border-radius: 0.3rem;
-}
-
-.form > input {
-  margin: 0.5rem 0;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 0.3rem;
-  font-size: 1rem;
-  color: #333333;
-}
-
-.form > h1 {
-  color: #fff;
-}
-
-.form > button {
-  border: none;
-  margin: 0.5rem 0;
-  border-radius: 0.3rem;
-  padding: 0.5rem;
-  background-color: #ff245b;
-  color: #ffff;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.form > button:hover {
-  background-color: #8a1230;
-}
-
-.auth-links {
-  display: flex;
-}
-
-/* Cart div */
-
 .cart-div {
   width: 60vw;
   height: 80vh;
 }
+
+.cart {
+  position: relative;
+  display: inline-block; /* Ensure cart trigger and container align correctly */
+
+  /* Add styles for the cart trigger */
+  cursor: pointer;
+  z-index: 1; /* Ensure cart trigger is above other content */
+
+  /* Add styles for the arrow pointing to the trigger */
+}
+
+/* .cart-container {
+  display: block;
+ 
+} */

@@ -19,7 +19,7 @@ export default function Cart() {
             >
               {cartItem.title}
             </Link>
-            <div>
+            <div className="delete-container">
               <p
                 className="cart-delete"
                 // handle item delete from cart
